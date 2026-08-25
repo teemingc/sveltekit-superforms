@@ -1767,6 +1767,12 @@ export function superForm<
 				// For v3, then return { form } as data in applyAction below:
 				//const form: SuperValidated<T, M, In> = Form_capture(false);
 
+				const error =
+					result.error && typeof result.error === 'object'
+						? 'error' in result.error
+							? result.error.error
+							: { ...result.error, message: result.error.message }
+						: result.error;
 				result.status = status;
 
 				// Check if the error message should be replaced
@@ -1785,7 +1791,7 @@ export function superForm<
 
 				if (options.flashMessage && options.flashMessage.onError) {
 					await options.flashMessage.onError({
-						result,
+						result: { ...result, error },
 						flashMessage: flashMessage as Writable<App.PageData['flash']>
 					});
 				}
