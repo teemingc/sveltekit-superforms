@@ -1,4 +1,4 @@
-import { message, superValidate } from '$lib/server/index.js';
+import { message, superValidate, withFiles } from '$lib/server/index.js';
 import { zod } from '$lib/adapters/zod.js';
 
 import { z } from 'zod/v3';
@@ -6,12 +6,12 @@ import { fail } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types.js';
 
 const userSchema = z.object({
-	file: z.string(),
+	file: z.instanceof(File),
 	filename: z.string().min(1)
 });
 
 export const load = (async () => {
-	const form = await superValidate(zod(userSchema));
+	const form = await superValidate(zod(userSchema), { allowFiles: true });
 	return { form };
 }) satisfies PageServerLoad;
 
@@ -19,14 +19,14 @@ export const actions = {
 	default: async (event) => {
 		const data = await event.request.formData();
 		console.log('Formdata', data);
-		const form = await superValidate(data, zod(userSchema));
+		const form = await superValidate(data, zod(userSchema), { allowFiles: true });
 		console.log('Form', form);
-		if (!form.valid) return fail(400, { form });
+		if (!form.valid) return fail(400, withFiles({ form }));
 
 		const file = data.get('file');
 		if (file instanceof File) {
 			console.log(file.name, file);
-			form.message = 'Uploaded: ' + file.name;
+			return message(form, 'Uploaded: ' + file.name);
 		} else {
 			const output = message(form, 'No file uploaded.', { status: 400 });
 			console.log(form);
