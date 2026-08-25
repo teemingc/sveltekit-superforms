@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { fileProxy, superForm } from '$lib/client/index.js';
+	import { superForm } from '$lib/client/index.js';
 	import SuperDebug from '$lib/client/SuperDebug.svelte';
 	import type { PageData } from './$types.js';
 
@@ -10,8 +10,6 @@
 		dataType: page.url.searchParams.has('json') ? 'json' : 'form',
 		taintedMessage: null
 	});
-
-	const file = fileProxy(form, 'file');
 </script>
 
 <SuperDebug data={$form} />
@@ -37,7 +35,6 @@
 		type="file"
 		accept="image/png, image/gif, image/jpeg"
 		data-invalid={$errors.file}
-		bind:files={$file}
 	/>
 	{#if $errors.file}
 		<span class="invalid">{$errors.file}</span>
