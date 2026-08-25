@@ -437,6 +437,7 @@ export function superForm<
 	// Used in reset
 	let initialForm: SuperValidated<T, M, In>;
 	let options = formOptions ?? ({} as FormOptions<T, M, In>);
+	let flashMessage: Writable<App.PageData['flash']> | undefined;
 	// To check if a full validator is used when switching options.validators dynamically
 	let initialValidator: FormOptions<T, M, In>['validators'] | undefined = undefined;
 
@@ -462,6 +463,10 @@ export function superForm<
 			...defaultFormOptions,
 			...options
 		};
+
+		if (options.flashMessage) {
+			flashMessage = options.flashMessage.module.getFlash(pageState as unknown as Readable<Page>);
+		}
 
 		if (
 			(options.SPA === true || typeof options.SPA === 'object') &&
@@ -1499,10 +1504,9 @@ export function superForm<
 		__data.valid = form.valid;
 
 		if (options.flashMessage && shouldSyncFlash(options)) {
-			const flash = options.flashMessage.module.getFlash(page);
-			if (message && get(flash) === undefined) {
+			if (message && flashMessage && get(flashMessage) === undefined) {
 				// eslint-disable-next-line @typescript-eslint/no-explicit-any
-				flash.set(message as any);
+				flashMessage.set(message as any);
 			}
 		}
 	}
@@ -1781,7 +1785,7 @@ export function superForm<
 				if (options.flashMessage && options.flashMessage.onError) {
 					await options.flashMessage.onError({
 						result,
-						flashMessage: options.flashMessage.module.getFlash(page)
+						flashMessage: flashMessage as Writable<App.PageData['flash']>
 					});
 				}
 
@@ -1868,7 +1872,7 @@ export function superForm<
 						(options.clearOnSubmit == 'errors-and-message' || options.clearOnSubmit == 'message') &&
 						shouldSyncFlash(options)
 					) {
-						options.flashMessage.module.getFlash(page).set(undefined);
+						flashMessage?.set(undefined);
 					}
 
 					// Deprecation fix
