@@ -6,4 +6,4 @@ allowBuilds:
   svelte-preprocess: true
   '@sveltejs/kit': true
 patchedDependencies:
-  sveltekit-flash-message: patches/sveltekit-flash-message.patch
+  sveltekit-flash-message@2.4.6: patches/sveltekit-flash-message.patch
