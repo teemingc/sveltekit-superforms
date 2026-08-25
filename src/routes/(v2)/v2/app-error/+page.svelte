@@ -8,6 +8,32 @@
 	let error: string;
 
 	const spForm = superForm(data.form, {
+		onSubmit({ customRequest }) {
+			if ($form.exception !== 'json' && $form.exception !== 'plain') return;
+
+			return customRequest(async (input) => {
+				const response = await fetch(input.action, {
+					method: 'POST',
+					body: input.formData,
+					credentials: 'include'
+				});
+
+				try {
+					const result = await response.json();
+					return {
+						type: 'error',
+						status: result.status,
+						error: result
+					};
+				} catch (error) {
+					return {
+						type: 'error',
+						status: 500,
+						error: { message: error instanceof Error ? error.message : String(error) }
+					};
+				}
+			});
+		},
 		onError: (e) => {
 			console.log(e.result);
 			// @ts-expect-error Does not follow the App.Error shape

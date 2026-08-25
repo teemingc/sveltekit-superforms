@@ -1696,13 +1696,14 @@ export function superForm<
 		);
 
 		let currentRequest: AbortController | null;
-		let customRequest:
-			| ((
-					input: Parameters<SubmitFunction>[0]
-			  ) => Promise<Response | XMLHttpRequest | ActionResult>)
-			| undefined = undefined;
 
 		const enhanced = kitEnhance(FormElement, async (submitParams) => {
+			let customRequest:
+				| ((
+						input: Parameters<SubmitFunction>[0]
+				  ) => Promise<Response | XMLHttpRequest | ActionResult>)
+				| undefined;
+
 			let jsonData: Record<string, unknown> | undefined = undefined;
 			let validationAdapter = options.validators;
 			// eslint-disable-next-line @typescript-eslint/no-unused-expressions
