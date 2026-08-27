@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { superForm } from '$lib/client/index.js';
+	import { superForm } from '#lib/client/index.js';
 
 	export let data;
 

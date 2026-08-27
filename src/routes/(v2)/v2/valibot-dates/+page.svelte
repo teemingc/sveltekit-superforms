@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { dateProxy, superForm } from '$lib/index.js';
+	import { dateProxy, superForm } from '#lib/index.js';
 
 	export let data;
 

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import SuperDebug from '$lib/client/SuperDebug.svelte';
-	import { superForm } from '$lib/index.js';
+	import SuperDebug from '#lib/client/SuperDebug.svelte';
+	import { superForm } from '#lib/index.js';
 
 	export let data;
 

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { zod } from '$lib/adapters/zod.js';
+	import { zod } from '#lib/adapters/zod.js';
 	import { schema } from './schema.js';
-	import { superForm } from '$lib/client/index.js';
-	import SuperDebug from '$lib/client/SuperDebug.svelte';
+	import { superForm } from '#lib/client/index.js';
+	import SuperDebug from '#lib/client/SuperDebug.svelte';
 	import { page } from '$app/state';
 
 	export let data;

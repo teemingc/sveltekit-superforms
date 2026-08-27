@@ -2,8 +2,8 @@
 	import { page } from '$app/state';
 	import { goto, invalidateAll } from '$app/navigation';
 	import { toStore } from 'svelte/store';
-	import { superForm } from '$lib/client/index.js';
-	//import SuperDebug from '$lib/client/SuperDebug.svelte';
+	import { superForm } from '#lib/client/index.js';
+	//import SuperDebug from '#lib/client/SuperDebug.svelte';
 
 	export let data;
 

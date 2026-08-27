@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { superForm } from '$lib/client/index.js';
-	import SuperDebug from '$lib/client/SuperDebug.svelte';
+	import { superForm } from '#lib/client/index.js';
+	import SuperDebug from '#lib/client/SuperDebug.svelte';
 	import { schema } from './schema.js';
 	import * as flashModule from 'sveltekit-flash-message/client';
 	import { onMount } from 'svelte';
-	import type { SuperValidated, Infer } from '$lib/index.js';
-	import { valibotClient } from '$lib/adapters/valibot.js';
+	import type { SuperValidated, Infer } from '#lib/index.js';
+	import { valibotClient } from '#lib/adapters/valibot.js';
 
 	export let data: SuperValidated<Infer<typeof schema>>;
 	export let validator: 'valibot';

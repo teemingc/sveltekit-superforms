@@ -3,7 +3,7 @@
 	import { toStore } from 'svelte/store';
 	import { afterNavigate } from '$app/navigation';
 	import { page } from '$app/state';
-	import SuperDebug, { superForm } from '$lib/index.js';
+	import SuperDebug, { superForm } from '#lib/index.js';
 
 	let { data } = $props();
 

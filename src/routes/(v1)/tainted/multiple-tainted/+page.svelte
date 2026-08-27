@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { tick } from 'svelte';
-	import { superForm } from '$lib/client/index.js';
-	import SuperDebug from '$lib/client/SuperDebug.svelte';
+	import { superForm } from '#lib/client/index.js';
+	import SuperDebug from '#lib/client/SuperDebug.svelte';
 	import type { PageData } from './$types.js';
 	import { page } from '$app/state';
 	import { afterNavigate } from '$app/navigation';

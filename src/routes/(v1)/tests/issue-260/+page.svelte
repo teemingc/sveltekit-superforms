@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { formFieldProxy, superForm } from '$lib/client/index.js';
-	import SuperDebug from '$lib/client/SuperDebug.svelte';
+	import { formFieldProxy, superForm } from '#lib/client/index.js';
+	import SuperDebug from '#lib/client/SuperDebug.svelte';
 
 	export let data;
 
