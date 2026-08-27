@@ -6,10 +6,15 @@ import globals from 'globals';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript-eslint';
 import dciLint from 'eslint-plugin-dci-lint';
+import { loadConfig } from '@sveltejs/load-config';
 
-// svelte.config.js was removed with SvelteKit 3 (config now lives in vite.config.ts),
-// so the equivalent settings are declared inline for svelte-eslint-parser.
-const svelteConfig = {};
+async function loadSvelteConfig() {
+	const result = await loadConfig('vite.config.ts');
+  if (result && 'config' in result) return result.config;
+  throw new Error('Failed to find the Svelte config');
+}
+
+const svelteConfig = await loadSvelteConfig();
 
 const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url));
 
