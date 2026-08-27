@@ -5,6 +5,7 @@ import svelte from 'eslint-plugin-svelte';
 import globals from 'globals';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript-eslint';
+// @ts-expect-error eslint-plugin-dci-lint has no types included
 import dciLint from 'eslint-plugin-dci-lint';
 import { loadConfig } from '@sveltejs/load-config';
 
