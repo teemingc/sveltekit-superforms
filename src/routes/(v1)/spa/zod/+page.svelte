@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { superForm, defaults } from '$lib/client/index.js';
-	import { zod } from '$lib/adapters/zod.js';
+	import { superForm, defaults } from '#lib/client/index.js';
+	import { zod } from '#lib/adapters/zod.js';
 
-	//import SuperDebug from '$lib/client/SuperDebug.svelte';
+	//import SuperDebug from '#lib/client/SuperDebug.svelte';
 	import { schema } from './schema.js';
 
 	const partialData = {

@@ -1,10 +1,10 @@
 <script lang="ts">
 	import type { PageData } from './$types.js';
-	import { superForm } from '$lib/client/index.js';
+	import { superForm } from '#lib/client/index.js';
 	import { basicSchema, refined } from './schema.js';
 	import { page } from '$app/state';
-	import SuperDebug from '$lib/client/SuperDebug.svelte';
-	import { zod } from '$lib/adapters/zod.js';
+	import SuperDebug from '#lib/client/SuperDebug.svelte';
+	import { zod } from '#lib/adapters/zod.js';
 
 	export let data: PageData;
 

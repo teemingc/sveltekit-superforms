@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { superForm } from '$lib/index.js';
-	import SuperDebug from '$lib/index.js';
+	import { superForm } from '#lib/index.js';
+	import SuperDebug from '#lib/index.js';
 	import { goto } from '$app/navigation';
 
 	export let data;

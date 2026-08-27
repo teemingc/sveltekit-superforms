@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { superForm, type FormResult, type SuperValidated } from '$lib/client/index.js';
+	import { superForm, type FormResult, type SuperValidated } from '#lib/client/index.js';
 	import type { PageData, ActionData } from './$types.js';
-	import SuperDebug from '$lib/client/SuperDebug.svelte';
+	import SuperDebug from '#lib/client/SuperDebug.svelte';
 	import { schema } from './schemas.js';
 	import { page } from '$app/state';
 	import InputField from './input-field.svelte';
-	import { zod } from '$lib/adapters/zod.js';
+	import { zod } from '#lib/adapters/zod.js';
 
 	export let data: PageData;
 

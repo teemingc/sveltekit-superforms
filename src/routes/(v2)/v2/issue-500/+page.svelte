@@ -1,9 +1,9 @@
 <!-- +page.svelte -->
 <script lang="ts">
 	import { page } from '$app/state';
-	import { defaults, superForm } from '$lib/index.js';
-	import { zod } from '$lib/adapters/zod.js';
-	import SuperDebug from '$lib/index.js';
+	import { defaults, superForm } from '#lib/index.js';
+	import { zod } from '#lib/adapters/zod.js';
+	import SuperDebug from '#lib/index.js';
 	import { inviteUserToGroupSchema } from './schema.js';
 	import Form from './Form.svelte';
 
