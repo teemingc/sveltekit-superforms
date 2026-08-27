@@ -1,16 +1,16 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { type Infer, superForm } from '$lib/client/index.js';
-	import type { FormOptions } from '$lib/client/index.js';
-	import SuperDebug from '$lib/client/SuperDebug.svelte';
+	import { type Infer, superForm } from '#lib/client/index.js';
+	import type { FormOptions } from '#lib/client/index.js';
+	import SuperDebug from '#lib/client/SuperDebug.svelte';
 	import { schema } from './schema.js';
 	import * as flashModule from 'sveltekit-flash-message/client';
 	import { onMount } from 'svelte';
-	import type { SuperValidated } from '$lib/index.js';
+	import type { SuperValidated } from '#lib/index.js';
 
 	import type { z } from 'zod/v3';
-	import { zodClient } from '$lib/adapters/zod.js';
-	import { superformClient } from '$lib/adapters/superform.js';
+	import { zodClient } from '#lib/adapters/zod.js';
+	import { superformClient } from '#lib/adapters/superform.js';
 
 	export let data: SuperValidated<z.infer<typeof schema>>;
 	export let validator: 'zod' | 'superforms';

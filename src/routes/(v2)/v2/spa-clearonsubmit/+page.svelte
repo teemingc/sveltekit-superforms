@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { defaults, superForm } from '$lib/index.js';
-	import SuperDebug from '$lib/index.js';
-	import { valibot } from '$lib/adapters/valibot.js';
+	import { defaults, superForm } from '#lib/index.js';
+	import SuperDebug from '#lib/index.js';
+	import { valibot } from '#lib/adapters/valibot.js';
 	import { schema } from './schema.js';
 
 	const data = defaults(valibot(schema));

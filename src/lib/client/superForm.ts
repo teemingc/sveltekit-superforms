@@ -1,5 +1,5 @@
 /* eslint-disable dci-lint/atomic-role-binding */
-import type { TaintedFields, SuperFormValidated, SuperValidated } from '$lib/superValidate.js';
+import type { TaintedFields, SuperFormValidated, SuperValidated } from '#lib/superValidate.js';
 import type { Transport } from '@sveltejs/kit/hooks';
 import {
 	derived,
@@ -12,35 +12,35 @@ import {
 	type Updater
 } from 'svelte/store';
 import { navigating as navigatingState, page as pageState, type Page } from '$app/state';
-import { clone } from '$lib/utils.js';
+import { clone } from '#lib/utils.js';
 import { BROWSER as browser } from 'esm-env';
 import { onDestroy, tick } from 'svelte';
-import { comparePaths, pathExists, setPaths, traversePath, traversePaths } from '$lib/traversal.js';
+import { comparePaths, pathExists, setPaths, traversePath, traversePaths } from '#lib/traversal.js';
 import {
 	splitPath,
 	type FormPathType,
 	mergePath,
 	type FormPath,
 	type FormPathLeaves
-} from '$lib/stringPath.js';
+} from '#lib/stringPath.js';
 import { beforeNavigate, goto, invalidateAll, type BeforeNavigate, type Navigation } from '$app/navigation';
-import { SuperFormError, flattenErrors, mapErrors, updateErrors } from '$lib/errors.js';
+import { SuperFormError, flattenErrors, mapErrors, updateErrors } from '#lib/errors.js';
 import { cancelFlash, shouldSyncFlash } from './flash.js';
 import { applyAction, deserialize, enhance as kitEnhance, type ActionResult, type SubmitFunction } from '$app/forms';
 import { setCustomValidityForm, updateCustomValidity } from './customValidity.js';
 import { inputInfo } from './elements.js';
 import { Form as HtmlForm, scrollToFirstError } from './form.js';
 import { stringify } from 'devalue';
-import type { ValidationErrors } from '$lib/superValidate.js';
-import type { IsAny, MaybePromise } from '$lib/utils.js';
+import type { ValidationErrors } from '#lib/superValidate.js';
+import type { IsAny, MaybePromise } from '#lib/utils.js';
 import type {
 	ClientValidationAdapter,
 	ValidationAdapter,
 	ValidationResult
-} from '$lib/adapters/adapters.js';
-import type { InputConstraints } from '$lib/jsonSchema/constraints.js';
+} from '#lib/adapters/adapters.js';
+import type { InputConstraints } from '#lib/jsonSchema/constraints.js';
 import { fieldProxy, type ProxyOptions } from './proxies.js';
-import { shapeFromObject } from '$lib/jsonSchema/schemaShape.js';
+import { shapeFromObject } from '#lib/jsonSchema/schemaShape.js';
 
 export type SuperFormEvents<T extends Record<string, unknown>, M> = Pick<
 	FormOptions<T, M>,

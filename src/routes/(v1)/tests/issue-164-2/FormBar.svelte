@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { superForm } from '$lib/client/index.js';
+	import { superForm } from '#lib/client/index.js';
 	import { page } from '$app/state';
 
 	const { form, enhance, message } = superForm(page.data.barForm, {

@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { superForm } from '$lib/client/index.js';
-	//import SuperDebug from '$lib/client/SuperDebug.svelte';
+	import { superForm } from '#lib/client/index.js';
+	//import SuperDebug from '#lib/client/SuperDebug.svelte';
 	import { z } from 'zod/v3';
 	import type { Schema } from './schema.js';
-	import { superformClient } from '$lib/adapters/superform.js';
+	import { superformClient } from '#lib/adapters/superform.js';
 
 	const defaultData = {
 		tags: [

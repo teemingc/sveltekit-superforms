@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { defaults, superForm } from '$lib/index.js';
-	import SuperDebug from '$lib/index.js';
-	import { arktype } from '$lib/adapters/arktype.js';
+	import { defaults, superForm } from '#lib/index.js';
+	import SuperDebug from '#lib/index.js';
+	import { arktype } from '#lib/adapters/arktype.js';
 	import { schema } from './schema.js';
 
 	const defaultData = { name: '', email: '' };

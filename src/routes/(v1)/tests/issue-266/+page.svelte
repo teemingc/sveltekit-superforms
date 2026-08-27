@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { superformClient } from '$lib/adapters/superform.js';
-	import { superForm, type Infer } from '$lib/client/index.js';
-	import SuperDebug from '$lib/client/SuperDebug.svelte';
+	import { superformClient } from '#lib/adapters/superform.js';
+	import { superForm, type Infer } from '#lib/client/index.js';
+	import SuperDebug from '#lib/client/SuperDebug.svelte';
 	import { schema } from './schema.js';
 
 	export let data;
