@@ -1,6 +1,9 @@
 /* eslint-disable dci-lint/atomic-role-binding */
 import type { TaintedFields, SuperFormValidated, SuperValidated } from '#lib/superValidate.js';
-import type { ActionResult, BeforeNavigate, Page, SubmitFunction, Transport } from '@sveltejs/kit';
+import type { ActionResult, SubmitFunction } from '$app/forms';
+import type { BeforeNavigate, Navigation } from '$app/navigation';
+import type { Page } from '$app/state';
+import type { Transport } from '@sveltejs/kit/hooks';
 import {
 	derived,
 	get,
@@ -12,7 +15,6 @@ import {
 	type Updater
 } from 'svelte/store';
 import { navigating as navigatingState, page as pageState } from '$app/state';
-import type { Navigation } from '@sveltejs/kit';
 import { clone } from '#lib/utils.js';
 import { BROWSER as browser } from 'esm-env';
 import { onDestroy, tick } from 'svelte';
@@ -1266,7 +1268,7 @@ export function superForm<
 		if (shouldRedirect && nav.to) {
 			try {
 				Tainted.forceRedirection = true;
-				await goto(nav.to.url, { ...nav.to.params });
+				await goto(nav.to.url);
 				return;
 			} finally {
 				// Reset forceRedirection for multiple-tainted purpose
@@ -1735,8 +1737,18 @@ export function superForm<
 				const data = { form: validationResult };
 
 				const result: ActionResult = validationResult.valid
-					? { type: 'success', status, data }
-					: { type: 'failure', status, data };
+					? {
+							type: 'success',
+							status,
+							data,
+							location: submitParams.action.pathname + submitParams.action.search
+						}
+					: {
+							type: 'failure',
+							status,
+							data,
+							location: submitParams.action.pathname + submitParams.action.search
+						};
 
 				setTimeout(() => validationResponse({ result }), 0);
 			}
