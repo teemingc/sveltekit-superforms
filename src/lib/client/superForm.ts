@@ -1,6 +1,6 @@
 /* eslint-disable dci-lint/atomic-role-binding */
 import type { TaintedFields, SuperFormValidated, SuperValidated } from '$lib/superValidate.js';
-import type { ActionResult, BeforeNavigate, Page, SubmitFunction, Transport } from '@sveltejs/kit';
+import type { Transport } from '@sveltejs/kit/hooks';
 import {
 	derived,
 	get,
@@ -11,8 +11,7 @@ import {
 	type Writable,
 	type Updater
 } from 'svelte/store';
-import { navigating as navigatingState, page as pageState } from '$app/state';
-import type { Navigation } from '@sveltejs/kit';
+import { navigating as navigatingState, page as pageState, type Page } from '$app/state';
 import { clone } from '$lib/utils.js';
 import { BROWSER as browser } from 'esm-env';
 import { onDestroy, tick } from 'svelte';
@@ -24,10 +23,10 @@ import {
 	type FormPath,
 	type FormPathLeaves
 } from '$lib/stringPath.js';
-import { beforeNavigate, goto, invalidateAll } from '$app/navigation';
+import { beforeNavigate, goto, invalidateAll, type BeforeNavigate, type Navigation } from '$app/navigation';
 import { SuperFormError, flattenErrors, mapErrors, updateErrors } from '$lib/errors.js';
 import { cancelFlash, shouldSyncFlash } from './flash.js';
-import { applyAction, deserialize, enhance as kitEnhance } from '$app/forms';
+import { applyAction, deserialize, enhance as kitEnhance, type ActionResult, type SubmitFunction } from '$app/forms';
 import { setCustomValidityForm, updateCustomValidity } from './customValidity.js';
 import { inputInfo } from './elements.js';
 import { Form as HtmlForm, scrollToFirstError } from './form.js';
