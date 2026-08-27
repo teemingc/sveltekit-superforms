@@ -168,6 +168,7 @@ export type FormOptions<
 	multipleSubmits: 'prevent' | 'allow' | 'abort';
 	syncFlashMessage?: boolean;
 	/**
+	 * TODO: should we remove this?
 	 * @deprecated SvelteKit has moved to $app/state instead of $app/stores, making it hard to support both. Use the flash library directly (setFlash or redirect) instead of integrating it with Superforms.
 	 */
 	flashMessage: {
@@ -1264,7 +1265,8 @@ export function superForm<
 
 		if (shouldRedirect && nav.to) {
 			try {
-				Tainted.forceRedirection = true;
+        Tainted.forceRedirection = true;
+				// TODO: changing page.params is not valid because page is read-only now
 				await goto(nav.to.url, { ...nav.to.params });
 				return;
 			} finally {
@@ -1733,6 +1735,7 @@ export function superForm<
 
 				const data = { form: validationResult };
 
+				// TODO: both objects need a `location: '...'` property
 				const result: ActionResult = validationResult.valid
 					? { type: 'success', status, data }
 					: { type: 'failure', status, data };
