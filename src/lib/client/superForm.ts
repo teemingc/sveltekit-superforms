@@ -1,5 +1,8 @@
 /* eslint-disable dci-lint/atomic-role-binding */
 import type { TaintedFields, SuperFormValidated, SuperValidated } from '#lib/superValidate.js';
+import type { ActionResult, SubmitFunction } from '$app/forms';
+import type { BeforeNavigate, Navigation } from '$app/navigation';
+import type { Page } from '$app/state';
 import type { Transport } from '@sveltejs/kit/hooks';
 import {
 	derived,
@@ -11,7 +14,7 @@ import {
 	type Writable,
 	type Updater
 } from 'svelte/store';
-import { navigating as navigatingState, page as pageState, type Page } from '$app/state';
+import { navigating as navigatingState, page as pageState } from '$app/state';
 import { clone } from '#lib/utils.js';
 import { BROWSER as browser } from 'esm-env';
 import { onDestroy, tick } from 'svelte';
@@ -23,10 +26,10 @@ import {
 	type FormPath,
 	type FormPathLeaves
 } from '#lib/stringPath.js';
-import { beforeNavigate, goto, invalidateAll, type BeforeNavigate, type Navigation } from '$app/navigation';
+import { beforeNavigate, goto, invalidateAll } from '$app/navigation';
 import { SuperFormError, flattenErrors, mapErrors, updateErrors } from '#lib/errors.js';
 import { cancelFlash, shouldSyncFlash } from './flash.js';
-import { applyAction, deserialize, enhance as kitEnhance, type ActionResult, type SubmitFunction } from '$app/forms';
+import { applyAction, deserialize, enhance as kitEnhance } from '$app/forms';
 import { setCustomValidityForm, updateCustomValidity } from './customValidity.js';
 import { inputInfo } from './elements.js';
 import { Form as HtmlForm, scrollToFirstError } from './form.js';
@@ -1737,8 +1740,18 @@ export function superForm<
 
 				// TODO: both objects need a `location: '...'` property
 				const result: ActionResult = validationResult.valid
-					? { type: 'success', status, data }
-					: { type: 'failure', status, data };
+					? {
+							type: 'success',
+							status,
+							data,
+							location: submitParams.action.pathname + submitParams.action.search
+						}
+					: {
+							type: 'failure',
+							status,
+							data,
+							location: submitParams.action.pathname + submitParams.action.search
+						};
 
 				setTimeout(() => validationResponse({ result }), 0);
 			}

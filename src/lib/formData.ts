@@ -148,7 +148,11 @@ export function parseFormData<T extends Record<string, unknown>>(
 			try {
 				const transport =
 					options && options.transport
-						? Object.fromEntries(Object.entries(options.transport).map(([k, v]) => [k, v.decode]))
+						? Object.fromEntries(
+								Object.entries(
+									options.transport as Record<string, { decode: (value: any) => any }>
+								).map(([k, v]) => [k, v.decode])
+							)
 						: undefined;
 
 				const output = parse(formData.getAll('__superform_json').join('') ?? '', transport);

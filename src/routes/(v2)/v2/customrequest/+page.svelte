@@ -4,7 +4,7 @@
 	import SuperDebug from '#lib/index.js';
 	import FileInput from './FileInput.svelte';
 	import type { PageData } from './$types.js';
-	import type { SubmitFunction } from '@sveltejs/kit';
+	import type { SubmitFunction } from '$app/forms';
 
 	export let data: PageData;
 	let progress = 0;
