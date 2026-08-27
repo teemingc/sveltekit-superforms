@@ -1268,7 +1268,7 @@ export function superForm<
 
 		if (shouldRedirect && nav.to) {
 			try {
-        Tainted.forceRedirection = true;
+				Tainted.forceRedirection = true;
 				await goto(nav.to.url);
 				return;
 			} finally {
