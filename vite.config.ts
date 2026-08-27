@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-vercel';
+import adapter from '@sveltejs/adapter-auto';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { defineConfig } from 'vitest/config';
@@ -9,7 +9,7 @@ export default defineConfig({
 	plugins: [
 		sveltekit({
 			preprocess: vitePreprocess(),
-			adapter: adapter({ runtime: 'nodejs24.x' }),
+			adapter: adapter(),
 			// SvelteKit 3 removed the built-in $lib alias (replaced by #lib imports),
 			// but the library source and svelte-package still rely on $lib.
 			alias: {
