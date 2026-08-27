@@ -1,6 +1,9 @@
 {
 	"extends": "$app/tsconfig",
 	"compilerOptions": {
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"sourceMap": true,
 		"strict": true
 	},
 	"include": ["src", "vite.config.ts", "types-exist.js", "eslint.config.js"]
