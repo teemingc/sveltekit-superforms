@@ -7,5 +7,3 @@ allowBuilds:
   '@sveltejs/kit': true
 minimumReleaseAgeExclude:
   - sveltekit-flash-message@3.0.0-next.0
-overrides:
-  sveltekit-flash-message: link:../sveltekit-flash-message
