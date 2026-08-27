@@ -1269,8 +1269,7 @@ export function superForm<
 		if (shouldRedirect && nav.to) {
 			try {
         Tainted.forceRedirection = true;
-				// TODO: changing page.params is not valid because page is read-only now
-				await goto(nav.to.url, { ...nav.to.params });
+				await goto(nav.to.url);
 				return;
 			} finally {
 				// Reset forceRedirection for multiple-tainted purpose
